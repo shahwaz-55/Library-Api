@@ -6,18 +6,8 @@ http_formatter = require('./util/http_formatter');
 
 const app = express();
 
-const whitelist = [
-    `http://localhost:3000`,
-    `http://localhost:8000`
-];
 
 
-const corsOptions = {
-    origin: function(origin, callback) {
-        if(whitelist.includes(origin)) callback(null, true);
-        else callback(new Error('You are not Authorized'));
-    }
-}
 
 app.use(cors('*'));
 
@@ -25,10 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.use('/student', require('./router/students_routes'));
+//app.use('/student', require('./router/students_routes'));
 app.use('/book', require('./router/book_routes'));
-app.use('/libraian', require('./router/libraian_routes'));
-app.use('/issuebook', require('./router/book_issue_routes'));
+//app.use('/libraian', require('./router/libraian_routes'));
+//app.use('/issuebook', require('./router/book_issue_routes'));
 
 
 app.use((req, res, next) => {
